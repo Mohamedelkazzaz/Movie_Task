@@ -54,7 +54,22 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let movie = viewModel.movies[indexPath.item]
+            
+            let storyboard = UIStoryboard(name: "MovieDetails", bundle: nil)
+            guard let detailsVC = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController") as? MovieDetailsViewController else {
+                print("❌ Failed to load MovieDetailsViewController from storyboard.")
+                return
+            }
+
+            
+            let repository = MovieRepositoryImpl()
+            let useCase = FetchMovieDetailsUseCase(repository: repository)
+            let viewModel = MovieDetailsViewModel(fetchMovieDetailsUseCase: useCase)
+            detailsVC.viewModel = viewModel
+
+            navigationController?.pushViewController(detailsVC, animated: true)
+            viewModel.fetchDetails(for: movie.id ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -16,4 +16,5 @@ final class DIContainer {
         let useCase = FetchMoviesUseCase(repository: repo)
         return MoviesViewModel(fetchMoviesUseCase: useCase)
     }
+    
 }
