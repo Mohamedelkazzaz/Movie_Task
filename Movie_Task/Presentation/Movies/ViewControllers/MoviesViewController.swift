@@ -70,7 +70,7 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if indexPath.item == viewModel.movies.count - 1 && !viewModel.isLastPage {
                 viewModel.loadMovies()
             }
-        
+        cell.layoutIfNeeded()
         return cell
     }
     
@@ -95,25 +95,27 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemsPerRow: CGFloat = 2
-        let padding: CGFloat = 10
-        let totalSpacing = (itemsPerRow + 1) * padding
-
-        let availableWidth = collectionView.bounds.width - totalSpacing
+        let padding: CGFloat = 5
+        let totalPadding = (padding * (itemsPerRow + 1))
+        let availableWidth = collectionView.bounds.width - totalPadding
         let widthPerItem = floor(availableWidth / itemsPerRow)
-        let heightPerItem: CGFloat = 250
-
+        let heightPerItem: CGFloat = 250 // Or any fixed height you prefer
+        
         return CGSize(width: widthPerItem, height: heightPerItem)
     }
+
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 5
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 5
     }
+
 }
