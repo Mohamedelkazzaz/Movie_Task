@@ -29,4 +29,10 @@ class MovieCell: UICollectionViewCell {
     @IBAction func favouriteButtonSelect(_ sender: Any) {
         self.didSelectFavourite?()
     }
+    
+    func updateFavorite(isFavorite: Bool) {
+        let imageName = isFavorite ? "heart.fill" : "heart"
+        favouriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+        favouriteButton.tintColor = isFavorite ? .red : .systemBlue
+    }
 }

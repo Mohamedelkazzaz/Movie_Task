@@ -24,6 +24,12 @@ class MoviesViewController: UIViewController {
         viewModel.loadMovies()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            moviesCollectionView.reloadData()
+        }
+
+    
     private func bindViewModel() {
           viewModel.didUpdate = { [weak self] in
               DispatchQueue.main.async {
@@ -33,6 +39,9 @@ class MoviesViewController: UIViewController {
       }
     
     @IBAction func favouriteButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Favorite", bundle: nil)
+           let vc = storyboard.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
+           navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -45,6 +54,18 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = viewModel.movies[indexPath.item]
         cell.configure(with: movie)
+        
+        let favoriteMovie = FavoriteMovie(title: movie.title ?? "", posterPath: movie.posterPath ?? "")
+        cell.updateFavorite(isFavorite: FavoritesManager.shared.isFavorite(favoriteMovie))
+        cell.didSelectFavourite = {
+            let isFavorite = FavoritesManager.shared.isFavorite(favoriteMovie)
+            if isFavorite {
+                FavoritesManager.shared.removeFavorite(favoriteMovie)
+            } else {
+                FavoritesManager.shared.addFavorite(favoriteMovie)
+            }
+            collectionView.reloadItems(at: [indexPath])
+        }
         
         if indexPath.item == viewModel.movies.count - 1 && !viewModel.isLastPage {
                 viewModel.loadMovies()

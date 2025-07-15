@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorite View Controller-->
+        <scene sceneID="Ujh-jD-ldq">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteViewController" id="Cah-h9-0gb" customClass="FavoriteViewController" customModule="Movie_Task" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zCf-sh-Qth">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourite List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESn-1S-SmD">
+                                <rect key="frame" x="107.33333333333333" y="79" width="178.33333333333337" height="41"/>
+                                <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="30"/>
+                                <color key="textColor" systemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WL3-zZ-xmE">
+                                <rect key="frame" x="0.0" y="130" width="393" height="722"/>
+                                <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hn7-mw-eXu">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ac3-xX-aWb"/>
+                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WL3-zZ-xmE" firstAttribute="top" secondItem="ESn-1S-SmD" secondAttribute="bottom" constant="10" id="1Y9-et-3ls"/>
+                            <constraint firstItem="ac3-xX-aWb" firstAttribute="trailing" secondItem="WL3-zZ-xmE" secondAttribute="trailing" id="Tow-p6-m4m"/>
+                            <constraint firstAttribute="bottom" secondItem="WL3-zZ-xmE" secondAttribute="bottom" id="fq0-aI-aMZ"/>
+                            <constraint firstItem="ESn-1S-SmD" firstAttribute="top" secondItem="ac3-xX-aWb" secondAttribute="top" constant="20" id="nI8-1S-egQ"/>
+                            <constraint firstItem="WL3-zZ-xmE" firstAttribute="leading" secondItem="ac3-xX-aWb" secondAttribute="leading" id="pdY-yl-tpN"/>
+                            <constraint firstItem="ESn-1S-SmD" firstAttribute="centerX" secondItem="zCf-sh-Qth" secondAttribute="centerX" id="qnW-XE-kDb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hCk-WK-V4E"/>
+                    <connections>
+                        <outlet property="favouriteCollectionView" destination="WL3-zZ-xmE" id="eeh-Ja-3eA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YS8-8y-Hec" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="430" y="2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
